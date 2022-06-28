@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table id="table" border="2px solid red"></table>
+  </body>
+  <script>
+
+    let obj = {
+      p1: ["u1", "u2"],
+      p2: ["u2", "u3"],
+      p3: ["u1"],
+    };
+    let tr = ''
+    let td = ''
+    let check = ''
+
+    for(i=0;i<=3;i++){
+        td += `<td>U${i}</td>`
+        tr = `<tr>${td}</tr>`
+    }
+
+    for(key in obj){
+      td = `<td>${key}</td>`
+      if(obj[key][0] == 'u1'){
+        check = true;
+        td += `<td>${check}`
+      }
+      else if(obj[key][0] == 'u2'){
+                check = true;
+                td += `<td>${check}</td>`
+            }
+      tr += `<tr>${td}</tr>`
+        
+    }
+
+
+
+
+    document.getElementById("table").innerHTML = tr;
+  </script>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+
+    <table id="table" border="2px solid red">
+        
+    </table>
+  </body>
+  <script>
+    let obj = {
+      p1: ["u1", "u2",'u4'],
+      p2: ["u2", "u3"],
+      p3: ["u1"],
+    };
+
+    let sample = [];
+    let td = ''
+    let tr = ''
+  for(i=0;i<=3;i++){
+    td += `<td>U${i}</td>`
+  }
+  tr = `<tr>${td}</tr>`
+
+    for (key in obj) {
+      let check = obj[key];
+      if (check[0] == "u1" || check[1] == "u1" || check[2] == "u1") {
+        sample.push('&#10003;');
+      } else {
+        sample.push('X');
+      }
+      if (check[0] == "u2" || check[1] == "u2" || check[2] == "u2") {
+        sample.push('&#10003;');
+      } else {
+        sample.push('X');
+      }
+      if (check[0] == "u3" || check[1] == "u3" || check[2] == "u3") {
+        sample.push('&#10003;');
+      } else {
+        sample.push('X');
+      }
+      
+      console.log(sample);
+    let temp_td = ''
+      for(i=0;i<=sample.length-1;i++){
+          temp_td += `<td>${sample[i]}</td>`
+          
+        }
+        td = temp_td;
+        sample  = []
+        // console.log(td)
+        tr +=  `<tr><td>${key}</td>${td}</tr>`
+    }
+    // console.log(tr)
+    let table = document.getElementById('table')
+    table.innerHTML = tr
+  </script>
+</html>

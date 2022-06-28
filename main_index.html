@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table id="table" border="2px solid red"></table>
+    <script>
+
+      let obj = {
+        p1: ["u1", "u2"],
+        p2: ["u2", "u3"],
+        p3: ["u1",]
+      };
+
+      let str = [];
+      let sample = [];
+      let myKeys = [];
+
+
+      objLen = Object.keys(obj).length;
+
+      for (i = 0; i <= objLen - 1; i++) {
+        let keyLen = Object.values(obj)[i].length;
+        myKeys.push(Object.keys(obj)[i]);
+
+        for (j = 0; j <= keyLen - 1; j++) {
+          str.push(Object.values(obj)[i][j]);
+        }
+      }
+
+      let filterStr = [];
+      filterStr.push(str[0]);
+
+      for (i = 1; i <= str.length - 1; i++) {
+        let verify = filterStr.includes(str[i]);
+        if (verify == false) {
+          filterStr.push(str[i]);
+        }
+      }
+
+      var tr = "";
+      var td = "";
+
+      for (let i = 0; i <= objLen - 1; i++) {
+        let keyName = Object.keys(obj)[i];
+
+        for (j = 0; j <= filterStr.length - 1; j++) {
+          // console.log(Object.values(obj)[i].includes(filterStr[j]))
+          sample.push(Object.values(obj)[i].includes(filterStr[j]));
+        }
+      }
+
+      let b = [];
+
+      for (i = 0; i <= Object.keys(obj).length - 1; i++) {
+        b.push(sample.splice(0, filterStr.length));
+      }
+
+      td = `<td>U/P</td>`;
+      for (i = 0; i <= filterStr.length - 1; i++) {
+        td += `<td>${filterStr[i]}</td>`;
+      }
+      tr = `<tr>${td}</tr>`;
+
+      var temp_td = "";
+      for (i = 0; i <= b.length - 1; i++) {
+        td = `<td>${myKeys[i]}</td>`;
+        blen = b[i].length - 1;
+
+        for (j = 0; j <= blen; j++) {
+          td += `<td>${b[i][j]}</td>`;
+          console.log(i, j);
+          console.log(b[i][j]);
+        }
+
+        tr += `<tr>${td}</tr>`;
+      }
+
+      let table = document.getElementById("table");
+      table.innerHTML = tr;
+    </script>
+  </body>
+</html>
